@@ -1,0 +1,49 @@
+{% extends "accounts/profile.html" %}
+{% load el_pagination_tags %}
+{% block title_text%}Booking-list{% endblock%}
+
+{%block profilecontent%}
+
+<h2><strong>List of Bookings</strong></h2>
+<div class="table-responsive"> 
+	<table class="table table-bordered table-responsive">
+	    <thead style="background:#000; color:#fff;">
+			<tr>
+				<th>Name</th>
+				<th>Sports Centre</th>
+				<th>Phone Number</th>
+				<th>Date</th>
+				<th>Slot</th>
+			</tr>
+	    </thead>
+	    <tbody>
+	    	 {% paginate 10 booking_list %}   	
+			{% for booking in booking_list %}			
+				<tr>
+					<td>{{booking.name}}</td>
+					<td>{{booking.sports_centre}}</td>
+					<td>{{booking.phone_number}}</td>
+					<td>{{booking.date}}</td>
+					<td>{{booking.slot}}</td>
+				</tr>
+			{%empty%}
+				<tr>
+					<td>No Data</td>
+					<td>No Data</td>
+					<td>No Data</td>
+					<td>No Data</td>
+					<td>No Data</td>        
+				</tr>
+			{%endfor%}
+			{% get_pages %}			
+	    </tbody>
+	</table>
+</div>
+{% if pages.paginated %}
+Pages:{{ pages.get_rendered }}    
+{% endif %}
+
+<br>
+<br>
+<a href="{% url 'accounts:profile' %}" class="btn btn-primary ">Back to Profile</a>
+{%endblock%}

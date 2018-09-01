@@ -1,0 +1,39 @@
+{%extends "accounts/base.html"%}
+
+{% block title_text%}SignUp{% endblock%}
+
+{%block signup_class%}active{%endblock%}
+{%block content%}
+
+<div class="container" id="article">
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-sm-6 col-sm-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h1><strong>SignUp</strong></h1></div>
+				<div class="panel-body">
+					<form method="post">
+						{% csrf_token %}
+						{% for field in form %}
+							<div class="form-group">
+								{{ field.label_tag }}<br>
+								{{ field }}
+								<span class="helptext">{{field.help_text}}</span>
+								<br>
+							</div>
+						{% endfor %}						
+						
+						<input type="submit" class="btn btn-success" value="SignUp"/>
+					</form>
+					<br>
+					<div class="signin">
+						<p>Already a user ?<a href="{% url 'accounts:login' %}">Login</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{%endblock%}

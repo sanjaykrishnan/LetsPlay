@@ -1,0 +1,38 @@
+{% extends "accounts/base.html" %}
+
+{% block title_text%}Login{% endblock%}
+
+{%block login_class%}active{%endblock%}
+{%block content%}
+<div class="container" id="article">
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-sm-6 col-sm-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h1><strong>Login</strong></h1></div>
+				<div class="panel-body">
+					<form method="post" action="{% url 'accounts:login' %}">
+						{% csrf_token %}
+						{% for field in form %}
+							<div class="form-group">
+								{{ field.label_tag }}<br>
+								{{ field }}
+								<span class="helptext">{{field.help_text}}</span>
+								<br>
+							</div>
+						{% endfor %}
+						{% if form.errors %}
+							<p class="error_message">Your username and password didn't match. Please try again.</p>
+						{% endif %}
+						<input type="submit" class="btn btn-success"value="Login" />
+						<input type="hidden" name="next" value="{% url 'accounts:profile'%}" />
+					</form>
+					<br>
+					<p>Not registered ?<a href="{% url 'accounts:signup' %}">Create an Account</a></p>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%}

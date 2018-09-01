@@ -1,0 +1,57 @@
+{%extends "accounts/base.html"%}
+
+{% block title_text%}Booking{% endblock%}
+
+{%block content%}
+<div class="container" id="article">
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-sm-6 col-sm-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h1><strong>Booking</strong></h1></div>
+				<div class="panel-body">
+					<div class="form-group">
+						{% if messages %}
+						    {% for message in messages %}			    
+						    	<div class="alert alert-success">
+						    		<strong>
+						    			{{ message|safe }}
+						    		</strong>
+						    	</div>		
+						    {% endfor %}
+						{% endif %}
+					</div>
+					<form method="post" id="bookingform" enctype="multipart/form-data">
+						{% csrf_token %}			
+						{% for field in form %}
+							<div class="form-group">
+								{{ field.label_tag }}
+								<br>
+								{{ field }}
+								<span class="helptext">{{field.help_text}}</span>
+								<br>
+							</div>
+						{% endfor %}
+						<input type="submit" id="bookbtn" class="btn btn-success" value="Save" />
+					</form>					
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+{%endblock%}
+
+{% block js%}
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+       rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" charset="utf-8" async defer>
+$(function() {
+  $( "#id_date" ).datepicker({dateFormat: "yy-mm-dd"});
+  });
+ 
+
+</script>
+{%endblock%}

@@ -1,0 +1,63 @@
+{%extends "accounts/base.html"%}
+
+{% block title_text%}Detail{% endblock%}
+
+{%block content%}
+<div class="container" id="article">
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-sm-12 ">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h1><strong>{{sports_centre.name|title}}</strong></h1></div>
+				<div class="panel-body">
+					<div class="container-fluid">
+						<div class="row">					
+							<div class="col-lg-6 ">
+								<img class="img-responsive" src="{{sports_centre.image.url}}" alt="">
+								<br>			
+								<div class="panel panel-success">
+									<div class="panel-heading">Description</div>
+									<div class="panel-body">
+										
+										<p>{{sports_centre.description}}</p>
+									</div>
+								</div>								
+							</div>							
+					     	<div class="col-lg-6   ">						
+								<div class="panel panel-success">
+									<div class="panel-heading">Timing</div>
+									<div class="panel-body">	
+										<p>{{sports_centre.opening_time}} to {{sports_centre.closing_time}}</p>
+									</div>									
+								</div>
+								<div class="panel panel-success">
+									<div class="panel-heading">Address</div>
+									<div class="panel-body">	
+										<p>{{sports_centre.address}}</p>
+									</div>									
+								</div>
+								<form method="post">{% csrf_token %}
+								    <p>Are you sure you want to delete "{{ object }}"?</p>
+								    <input type="submit" class="btn btn-success btn-lg" value="Yes">
+								    <br>
+								    <br>
+								    <a type="button" href="{% url 'sports_centre:detail' object.id %}" class="btn btn-danger form-control btn-lg">No</a>
+								</form>
+					     	</div>
+					    </div>
+				 	</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+<!--					-->	
+{%endblock%}
+
+
+
+
+
+
+

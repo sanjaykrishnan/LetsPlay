@@ -1,0 +1,31 @@
+{% extends "accounts/base.html" %}
+
+{% block title_text%}Profile{% endblock%}
+
+{%block content%}
+<div class="container" id="article">
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-sm-12 ">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h1><strong>Hi!! {{user.username}}</strong></h1></div>
+				<div class="panel-body">
+					{% block profilecontent%}	
+					<h1>Profile Details</h1>
+					<h4>Email: {{user.email}}</h4>
+					<h4>Firstname: {{user.first_name}}</h4>
+					<h4>LastName: {{user.last_name}}</h4>
+					<br>
+					{%if user.is_staff%}
+					<a href="{% url 'sports_centre:create' %}" class="btn btn-warning btn-lg">Create Sports Centre</a>
+					<a href="{% url 'sports_centre:booking-list' %}" class="btn btn-success btn-lg">Show Bookings</a>
+					{%endif%}
+					<a href="{% url 'accounts:edit' %}" class="btn btn-primary btn-lg">Edit Profile</a>
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%}

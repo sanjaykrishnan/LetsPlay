@@ -1,0 +1,23 @@
+{% extends "accounts/profile.html" %}
+
+{% block title_text%}ProfileEdit{% endblock%}
+
+{%block profilecontent%}
+
+<form method="post">
+	{% csrf_token %}
+    {% for field in form %}
+		<div class="form-group">
+			{{ field.label_tag }}<br>
+			{{ field }}
+			<span class="helptext">{{field.help_text}}</span>
+			<br>
+		</div>
+	{% endfor %}	
+	<input type="submit" class="btn btn-success" value="Save"/>
+    
+</form>
+<br>
+<br>
+<a href="{% url 'accounts:profile' %}" class="btn btn-primary ">Back to Profile</a>
+{%endblock%}

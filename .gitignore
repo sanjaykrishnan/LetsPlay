@@ -1,0 +1,7 @@
+__pycache__/
+db.sqlite3
+testing/
+media/
+*.pyc
+*.jpg
+letsplay/letsplay/local.py

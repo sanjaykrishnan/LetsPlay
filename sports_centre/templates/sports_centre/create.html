@@ -1,0 +1,61 @@
+{%extends "accounts/base.html"%}
+
+{% block title_text%}Sports-Centre|Create{% endblock%}
+
+{%block content%}
+<div class="container" id="article">
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-sm-6 col-sm-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h1><strong>Create Form</strong></h1></div>
+				<div class="panel-body">
+					<form method="post" enctype="multipart/form-data">
+						{% csrf_token %}			
+						{% for field in form %}
+							<div class="form-group">
+								{{ field.label_tag }}
+								<br>
+								{{ field }}
+								<span class="helptext">{{field.help_text}}</span>
+								<br>
+							</div>
+						{% endfor %}
+						<input type="submit" class="btn btn-success" value="Save" />
+					</form>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+{%endblock%}
+
+{%block js%}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<script type="text/javascript" charset="utf-8" async defer>
+$('#id_opening_time').timepicker({
+    timeFormat: 'HH:mm',
+    interval: 60,
+    minTime: '1:00 am',
+    maxTime: '23:00am',
+    defaultTime: '6',
+    startTime: '1:00',
+    dynamic: true,
+    dropdown: true,
+    scrollbar: true
+});
+$('#id_closing_time').timepicker({
+    timeFormat: 'HH:mm',
+    interval: 60,
+    minTime: '1:00 am',
+    maxTime: '23:00am',
+    defaultTime: '18',
+    startTime: '1:00',
+    dynamic: true,
+    dropdown: true,
+    scrollbar: true
+});
+</script>
+{% endblock%}

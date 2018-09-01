@@ -1,0 +1,48 @@
+{%extends "accounts/base.html"%}
+
+{% block title_text%}Contact Us{% endblock%}
+
+{%block contact_class%}active{%endblock%}
+{%block content%}
+
+<div class="container" id="article">
+	<div class="row">
+		<br>
+		<br>
+		<div class="col-sm-6 col-sm-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h1><strong>Contact Us</strong></h1></div>
+				<div class="panel-body">
+					<div class="form-group">
+						{% if messages %}
+						    {% for message in messages %}			    
+						    	<div class="alert alert-success">
+						    		<strong>
+						    			{{ message}}
+						    		</strong>
+						    	</div>		
+						    {% endfor %}
+						{% endif %}
+					</div>
+					<form method="post">
+						{% csrf_token %}
+						{% for field in form %}
+							<div class="form-group">
+								{{ field.label_tag }}<br>
+								{{ field }}
+								<span class="helptext">{{field.help_text}}</span>
+								<br>
+							</div>
+						{% endfor %}						
+						
+						<input type="submit" class="btn btn-success" value="Submit"/>
+					</form>
+					<br>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{%endblock%}
